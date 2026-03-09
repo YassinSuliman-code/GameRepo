@@ -12,9 +12,7 @@ public class MultiTasker extends Monster {
 	public int getNormalSpeedTurns() {
 		return normalSpeedTurns;
 	}
-
 	public void setNormalSpeedTurns(int normalSpeedTurns) {
 		this.normalSpeedTurns = normalSpeedTurns;
 	}
-
 }
