@@ -28,8 +28,12 @@ public class Dataloader {
             String description =  values[2].trim();
             int rarity = Integer.parseInt(values[3].trim());
 
-            if (cardType.equals("SWAPPER") || cardType.equals("SHIELD")) {
+            if (cardType.equals("SWAPPER")){
                 cards.add(new SwapperCard(name,description,rarity));
+            }
+
+            else if (cardType.equals("SHIELD")){
+                cards.add(new ShieldCard(name,description,rarity));
             }
 
             else if (cardType.equals("STARTOVER")){

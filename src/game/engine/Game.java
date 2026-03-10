@@ -26,9 +26,8 @@ public class Game {
     private Monster selectRandomMonsterByRole(Role role){
         ArrayList<Monster> filtered = new ArrayList<>();
 
-        for(int i = 0; i < allMonsters.size(); i++){
-            Monster m =  allMonsters.get(i);
-            if (m.getOriginalRole() == role){
+        for (Monster m : allMonsters) {
+            if (m.getOriginalRole() == role) {
                 filtered.add(m);
             }
         }
