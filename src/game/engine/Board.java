@@ -6,37 +6,37 @@ import java.util.*;
 
 public class Board {
     private final Cell[][] boardCells;
-    private ArrayList<Monster> stationedMonsters;
-    private final ArrayList<Card> originalCards;
-    private ArrayList<Card> cards;
+    private static ArrayList<Monster> stationedMonsters;
+    private static ArrayList<Card> originalCards;
+    private static ArrayList<Card> cards;
 
     public Board(ArrayList<Card> readCards){
         this.boardCells = new Cell[Constants.BOARD_ROWS][Constants.BOARD_COLS];
-        this.stationedMonsters = new ArrayList<>();
-        this.cards = new ArrayList<>();
-        this.originalCards = readCards;
+        stationedMonsters = new ArrayList<>();
+        cards = new ArrayList<>();
+        originalCards = readCards;
     }
 
     public Cell[][] getBoardCells(){
-        return boardCells;
+        return this.boardCells;
     }
 
-    public ArrayList<Monster> getStationedMonsters(){
+    public static ArrayList<Monster> getStationedMonsters(){
         return stationedMonsters;
     }
-    public void setStationedMonsters(ArrayList<Monster> stationedMonsters){
-        this.stationedMonsters = stationedMonsters;
+    public static void setStationedMonsters(ArrayList<Monster> stationedMonsters){
+        Board.stationedMonsters = stationedMonsters;
     }
 
-    public ArrayList<Card> getOriginalCards(){
+    public static ArrayList<Card> getOriginalCards(){
         return originalCards;
     }
 
-    public ArrayList<Card> getCards(){
+    public static ArrayList<Card> getCards(){
         return cards;
     }
-    public void setCards(ArrayList<Card> cards){
-        this.cards = cards;
+    public static void setCards(ArrayList<Card> cards){
+        Board.cards = cards;
     }
 
 }

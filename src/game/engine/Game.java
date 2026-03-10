@@ -1,8 +1,6 @@
 package game.engine;
-import game.engine.cells.*;
 import game.engine.monsters.*;
-import game.engine.cards.*;
-import game.engine.dataloader.Dataloader;
+import game.engine.dataloader.DataLoader;
 
 import java.io.IOException;
 import java.util.*;
@@ -15,8 +13,8 @@ public class Game {
     private Monster current;
 
     public Game(Role playerRole) throws IOException {
-        this.board = new Board(Dataloader.readsCards());
-        this.allMonsters = Dataloader.readMonsters();
+        this.board = new Board(DataLoader.readCards());
+        this.allMonsters = DataLoader.readMonsters();
         this.player = selectRandomMonsterByRole(playerRole);
         Role opponentRole = (playerRole == Role.SCARER) ? Role.LAUGHER : Role.SCARER;
         this.opponent = selectRandomMonsterByRole(opponentRole);
@@ -27,7 +25,7 @@ public class Game {
         ArrayList<Monster> filtered = new ArrayList<>();
 
         for (Monster m : allMonsters) {
-            if (m.getOriginalRole() == role) {
+            if (m.getRole() == role) {
                 filtered.add(m);
             }
         }
@@ -40,7 +38,7 @@ public class Game {
         return this.board;
     }
 
-    public ArrayList<Monster> getMonsters() {
+    public ArrayList<Monster> getAllMonsters() {
         return this.allMonsters;
     }
 

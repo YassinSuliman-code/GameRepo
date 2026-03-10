@@ -1,6 +1,7 @@
 package game.engine.cards;
+import game.engine.interfaces.CanisterModifier;
 
-public class EnergyStealCard extends Card{
+public class EnergyStealCard extends Card implements CanisterModifier{
     private final int energy;
 
     public EnergyStealCard(String name, String description, int rarity, int energy){

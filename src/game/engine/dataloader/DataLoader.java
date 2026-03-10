@@ -10,14 +10,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Dataloader {
+public class DataLoader {
     private static final String CARDS_FILE_NAME = "cards.csv";
     private static final String CELLS_FILE_NAME = "cells.csv";
     private static final String MONSTERS_FILE_NAME =  "monsters.csv";
 
-    public static ArrayList<Card> readsCards() throws IOException {
+    public static ArrayList<Card> readCards() throws IOException {
         ArrayList<Card> cards = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader("cards.csv"));
+        BufferedReader reader = new BufferedReader(new FileReader(CARDS_FILE_NAME));
         String line;
 
         while((line = reader.readLine()) != null){
@@ -58,7 +58,7 @@ public class Dataloader {
 
     public static ArrayList<Cell> readCells() throws IOException {
         ArrayList<Cell> cells = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader("cells.csv"));
+        BufferedReader reader = new BufferedReader(new FileReader(CELLS_FILE_NAME));
         String line;
 
         while((line = reader.readLine()) != null) {
@@ -88,7 +88,7 @@ public class Dataloader {
 
     public static ArrayList<Monster> readMonsters() throws IOException {
         ArrayList<Monster> monsters = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader("monsters.csv"));
+        BufferedReader reader = new BufferedReader(new FileReader(MONSTERS_FILE_NAME));
         String line;
 
         while((line = reader.readLine()) != null) {
