@@ -93,6 +93,6 @@ public abstract class Monster implements Comparable<Monster> {
 
 	@Override
 	public int compareTo(Monster other){
-		return Integer.compare(other.position, this.position);
+		return Integer.compare(this.position, other.position);
 	}
 }

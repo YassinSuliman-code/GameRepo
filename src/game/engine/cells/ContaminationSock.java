@@ -6,7 +6,6 @@ public class ContaminationSock extends TransportCell implements CanisterModifier
 	
 	public ContaminationSock(String name, int effect){
 		//effect always negative
-
 		super(name, effect);
 	}
 }

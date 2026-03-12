@@ -28,30 +28,31 @@ public class DataLoader {
             String description =  values[2].trim();
             int rarity = Integer.parseInt(values[3].trim());
 
-            if (cardType.equals("SWAPPER")){
-                cards.add(new SwapperCard(name,description,rarity));
-            }
+            switch(cardType){
+                case "SWAPPER":
+                    cards.add(new SwapperCard(name,description,rarity));
+                    break;
 
-            else if (cardType.equals("SHIELD")){
-                cards.add(new ShieldCard(name,description,rarity));
-            }
+                case "SHIELD":
+                    cards.add(new ShieldCard(name,description,rarity));
+                    break;
 
-            else if (cardType.equals("STARTOVER")){
-                boolean lucky = Boolean.parseBoolean(values[4].trim());
-                cards.add(new StartOverCard(name,description,rarity,lucky));
-            }
+                case "STARTOVER":
+                    boolean lucky = Boolean.parseBoolean(values[4].trim());
+                    cards.add(new StartOverCard(name,description,rarity,lucky));
+                    break;
 
-            else if (cardType.equals("ENERGYSTEAL")){
-                int energy = Integer.parseInt(values[4].trim());
-                cards.add(new EnergyStealCard(name,description,rarity,energy));
-            }
+                case "CONFUSION":
+                    int duration = Integer.parseInt(values[4].trim());
+                    cards.add(new ConfusionCard(name,description,rarity,duration));
+                    break;
 
-            else{
-                int duration = Integer.parseInt(values[4].trim());
-                cards.add(new ConfusionCard(name,description,rarity,duration));
+                case "ENERGYSTEAL":
+                    int energy = Integer.parseInt(values[4].trim());
+                    cards.add(new EnergyStealCard(name, description, rarity, energy));
+                    break;
             }
         }
-
         reader.close();
         return cards;
     }
@@ -66,22 +67,24 @@ public class DataLoader {
 
             String name = values[0].trim();
 
-            if(values.length == 3){
-                Role role = Role.valueOf(values[1]);
-                int energy = Integer.parseInt(values[2]);
-                cells.add(new DoorCell(name,role,energy));
-            }
-            else{
-                int effect = Integer.parseInt(values[1]);
-                if (effect > 0){
-                    cells.add(new ConveyorBelt(name,effect));
-                }
-                else{
-                    cells.add(new ContaminationSock(name,effect));
-                }
+            switch(values.length){
+                case 2:
+                    int effect = Integer.parseInt(values[1].trim());
+                    if (effect > 0){
+                        cells.add(new ConveyorBelt(name,effect));
+                    }
+                    else{
+                        cells.add(new ContaminationSock(name,effect));
+                    }
+                    break;
+
+                case 3:
+                    Role role = Role.valueOf(values[1].trim());
+                    int energy = Integer.parseInt(values[2].trim());
+                    cells.add(new DoorCell(name,role,energy));
+                    break;
             }
         }
-
         reader.close();
         return cells;
     }
@@ -100,20 +103,22 @@ public class DataLoader {
             Role  role = Role.valueOf(values[3].trim());
             int energy = Integer.parseInt(values[4].trim());
 
-            if(monsterType.equals("DYNAMO")){
-                monsters.add(new Dynamo(name,description,role,energy));
-            }
+            switch (monsterType){
+                case "DYNAMO":
+                    monsters.add(new Dynamo(name,description,role,energy));
+                    break;
 
-            else if(monsterType.equals("DASHER")){
-                monsters.add(new Dasher(name,description,role,energy));
-            }
+                case "DASHER":
+                    monsters.add(new Dasher(name,description,role,energy));
+                    break;
 
-            else if(monsterType.equals("MULTITASKER")){
-                monsters.add(new MultiTasker(name,description,role,energy));
-            }
+                case "MULTITASKER":
+                    monsters.add(new MultiTasker(name,description,role,energy));
+                    break;
 
-            else{
-                monsters.add(new Schemer(name,description,role,energy));
+                case "SCHEMER":
+                    monsters.add(new Schemer(name,description,role,energy));
+                    break;
             }
         }
 
