@@ -14,7 +14,6 @@ public class DoorCell extends Cell implements CanisterModifier {
 		this.energy = energy;
 		this.activated = false;
 	}
-	// should be able to modify energy
 
 	public boolean isActivated() {
 		return activated;
