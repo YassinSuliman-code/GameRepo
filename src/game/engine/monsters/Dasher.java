@@ -18,4 +18,17 @@ public class Dasher extends Monster {
 		this.momentumTurns = momentumTurns;
 	}
 
+	public void executePowerupEffect(Monster opponentMonster) {
+		setMomentumTurns(getMomentumTurns() + 3);
+	}
+
+	@Override
+	public void move(int distance) {
+		if (getMomentumTurns() > 0){
+			super.move(distance*3);
+		}
+		else{
+			super.move(distance*2);
+		}
+	}
 }
