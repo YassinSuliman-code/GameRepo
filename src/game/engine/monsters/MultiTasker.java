@@ -1,5 +1,6 @@
 package game.engine.monsters;
 
+import game.engine.Constants;
 import game.engine.Role;
 
 public class MultiTasker extends Monster {
@@ -10,32 +11,25 @@ public class MultiTasker extends Monster {
 		this.normalSpeedTurns = 0;
 	}
 
-	public int getNormalSpeedTurns() {
-		return normalSpeedTurns;
-	}
-
-	public void setNormalSpeedTurns(int normalSpeedTurns) {
-		this.normalSpeedTurns = normalSpeedTurns;
-	}
-
 	public void executePowerupEffect(Monster opponentMonster) {
-		setNormalSpeedTurns(getNormalSpeedTurns() + 2);
+		this.normalSpeedTurns += 2;
 	}
 
 	@Override
 	public void move(int distance) {
-		if (getNormalSpeedTurns() == 0) {
+		if (this.normalSpeedTurns == 0) {
 			super.move((int) (distance * 0.5));
-		}
-		else{
+		} else {
 			super.move(distance);
-			setNormalSpeedTurns(getNormalSpeedTurns() - 1);
+			this.normalSpeedTurns--;
 		}
 	}
 
 	@Override
-	public void alterEnergy(int energy) {
-		super.alterEnergy(energy);
-		super.alterEnergy(200);
+	public void setEnergy(int energy) {
+	    super.setEnergy(energy + Constants.MULTITASKER_BONUS);
 	}
+
+	public int getNormalSpeedTurns() { return normalSpeedTurns; }
+	public void setNormalSpeedTurns(int normalSpeedTurns) { this.normalSpeedTurns = normalSpeedTurns; }
 }

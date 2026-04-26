@@ -9,26 +9,21 @@ public class Dasher extends Monster {
 		super(name, description, role, energy);
 		this.momentumTurns = 0;
 	}
-	
-	public int getMomentumTurns() {
-		return momentumTurns;
-	}
-	
-	public void setMomentumTurns(int momentumTurns) {
-		this.momentumTurns = momentumTurns;
-	}
 
 	public void executePowerupEffect(Monster opponentMonster) {
-		setMomentumTurns(getMomentumTurns() + 3);
+		this.momentumTurns += 3;
 	}
 
 	@Override
 	public void move(int distance) {
-		if (getMomentumTurns() > 0){
-			super.move(distance*3);
-		}
-		else{
-			super.move(distance*2);
+		if (this.momentumTurns > 0) {
+			super.move(distance * 3);
+			this.momentumTurns--;
+		} else {
+			super.move(distance * 2);
 		}
 	}
+
+	public int getMomentumTurns() { return momentumTurns; }
+	public void setMomentumTurns(int momentumTurns) { this.momentumTurns = momentumTurns; }
 }
