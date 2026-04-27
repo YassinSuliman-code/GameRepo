@@ -11,7 +11,9 @@ public class ConfusionCard extends Card {
 		this.duration = duration;
 	}
 
-	public int getDuration() { return duration; }
+	public int getDuration(){
+		return duration;
+	}
 
 	@Override
 	public void performAction(Monster landingMonster, Monster opponentMonster) {

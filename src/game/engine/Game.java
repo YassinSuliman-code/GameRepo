@@ -30,6 +30,33 @@ public class Game {
 		Board.setStationedMonsters(this.allMonsters);
 		this.board.initializeBoard(DataLoader.readCells());
 	}
+	
+	public Board getBoard(){
+		return board;
+	}
+	public ArrayList<Monster> getAllMonsters(){
+		return allMonsters;
+	}
+	public Monster getPlayer(){
+		return player;
+	}
+	public Monster getOpponent(){
+		return opponent;
+	}
+	public Monster getCurrent(){
+		return current;
+	}
+	public void setCurrent(Monster current){
+		this.current = current;
+	}
+
+	private Monster selectRandomMonsterByRole(Role role) {
+		Collections.shuffle(allMonsters);
+	    return allMonsters.stream()
+	    		.filter(m -> m.getRole() == role)
+	    		.findFirst()
+	    		.orElse(null);
+	}
 
 	private Monster getCurrentOpponent() {
 		return (this.current == this.player) ? this.opponent : this.player;
@@ -42,7 +69,8 @@ public class Game {
 	public void usePowerup() throws OutOfEnergyException {
 		if (this.current.getEnergy() < Constants.POWERUP_COST) {
 			throw new OutOfEnergyException();
-		} else {
+		}
+		else {
 			this.current.setEnergyRaw(this.current.getEnergy() - Constants.POWERUP_COST);
 			this.current.executePowerupEffect(getCurrentOpponent());
 		}
@@ -51,7 +79,8 @@ public class Game {
 	public void playTurn() throws InvalidMoveException {
 		if (!this.current.isFrozen()) {
 			board.moveMonster(this.current, rollDice(), this.getCurrentOpponent());
-		} else {
+		}
+		else {
 			this.current.setFrozen(false);
 			this.current.decrementConfusion(); 
 		}
@@ -73,18 +102,5 @@ public class Game {
 		return null;
 	}
 
-	public Board getBoard() { return board; }
-	public ArrayList<Monster> getAllMonsters() { return allMonsters; }
-	public Monster getPlayer() { return player; }
-	public Monster getOpponent() { return opponent; }
-	public Monster getCurrent() { return current; }
-	public void setCurrent(Monster current) { this.current = current; }
-
-	private Monster selectRandomMonsterByRole(Role role) {
-		Collections.shuffle(allMonsters);
-	    return allMonsters.stream()
-	    		.filter(m -> m.getRole() == role)
-	    		.findFirst()
-	    		.orElse(null);
-	}
+	
 }

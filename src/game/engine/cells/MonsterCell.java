@@ -9,18 +9,22 @@ public class MonsterCell extends Cell {
 		super(name);
 		this.cellMonster = cellMonster;
 	}
+	
+	public Monster getCellMonster(){
+		return cellMonster;
+	}
 
 	@Override
 	public void onLand(Monster landingMonster, Monster opponentMonster) {
 		super.onLand(landingMonster, opponentMonster);
+		
 		if (landingMonster.getRole() == cellMonster.getRole()) {
 			landingMonster.executePowerupEffect(opponentMonster);
-		} else if (landingMonster.getEnergy() > cellMonster.getEnergy()) {
+		}
+		else if (landingMonster.getEnergy() > cellMonster.getEnergy()) {
 			int stolenEnergy = landingMonster.getEnergy();
-			landingMonster.alterEnergy(-stolenEnergy);
+			landingMonster.alterEnergy(cellMonster.getEnergy()-stolenEnergy);
 			cellMonster.setEnergy(stolenEnergy);
 		}
-	}
-
-	public Monster getCellMonster() { return cellMonster; }
+	}	
 }

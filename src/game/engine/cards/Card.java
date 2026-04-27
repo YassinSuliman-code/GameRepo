@@ -15,10 +15,18 @@ public abstract class Card {
 		this.lucky = lucky;
 	}
 
-	public String getName() { return name; }
-	public String getDescription() { return description; }
-	public int getRarity() { return rarity; }
-	public boolean isLucky() { return lucky; }
+	public String getName(){
+		return name;
+	}
+	public String getDescription(){
+		return description;
+	}
+	public int getRarity(){
+		return rarity;
+	}
+	public boolean isLucky(){
+		return lucky;
+	}
 
-	public abstract void performAction(Monster landingMonster, Monster opponentMonster);
+	public abstract void performAction(Monster player, Monster opponentMonster);
 }

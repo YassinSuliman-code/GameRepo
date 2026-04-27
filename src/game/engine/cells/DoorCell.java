@@ -1,6 +1,5 @@
 package game.engine.cells;
 
-import java.util.ArrayList;
 import game.engine.Board;
 import game.engine.Role;
 import game.engine.interfaces.CanisterModifier;
@@ -17,10 +16,23 @@ public class DoorCell extends Cell implements CanisterModifier {
 		this.energy = energy;
 		this.activated = false;
 	}
+	
+	public Role getRole(){
+		return role;
+	}
+	public int getEnergy(){
+		return energy;
+	}
+	public boolean isActivated(){
+		return activated;
+	}
+	public void setActivated(boolean activated){
+		this.activated = activated;
+	}	
 
 	@Override
 	public void modifyCanisterEnergy(Monster monster, int canisterValue) {
-		if (monster.getRole() == this.role) {
+		if (monster.getRole() == getRole()) {
 			monster.alterEnergy(canisterValue);
 		} else {
 			monster.alterEnergy(-canisterValue);
@@ -31,28 +43,17 @@ public class DoorCell extends Cell implements CanisterModifier {
 	public void onLand(Monster landingMonster, Monster opponentMonster) {
 	    super.onLand(landingMonster, opponentMonster);
 	    if (!this.isActivated()) {
-	        ArrayList<Monster> team = new ArrayList<>();
-	        team.add(landingMonster);
-	        for (Monster m : Board.getStationedMonsters()) {
-	            if (m.getRole() == landingMonster.getRole()) team.add(m);
-	        }
+	        int energyBefore = landingMonster.getEnergy();
+	        modifyCanisterEnergy(landingMonster, this.getEnergy());
+	        int energyAfter = landingMonster.getEnergy();
 
-	        if (landingMonster.getRole() == this.role) {
+	        if (energyBefore != energyAfter) {
 	            this.setActivated(true);
-	            for (Monster m : team) modifyCanisterEnergy(m, this.getEnergy());
-	        } else {
-	            if (!landingMonster.isShielded()) {
-	                this.setActivated(true);
-	                for (Monster m : team) modifyCanisterEnergy(m, this.getEnergy());
-	            } else {
-	                landingMonster.alterEnergy(-this.getEnergy());
+	            for (Monster m : Board.getStationedMonsters()) {
+	                if (m.getRole() == landingMonster.getRole())
+	                    modifyCanisterEnergy(m, this.getEnergy());
 	            }
 	        }
 	    }
 	}
-
-	public Role getRole() { return role; }
-	public int getEnergy() { return energy; }
-	public boolean isActivated() { return activated; }
-	public void setActivated(boolean activated) { this.activated = activated; }
 }

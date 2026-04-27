@@ -13,7 +13,8 @@ public class StartOverCard extends Card {
 	public void performAction(Monster landingMonster, Monster opponentMonster) {
 		if (this.isLucky()) {
 			opponentMonster.setPosition(Constants.STARTING_POSITION);
-		} else {
+		}
+		else {
 			landingMonster.setPosition(Constants.STARTING_POSITION);
 		}
 	}
