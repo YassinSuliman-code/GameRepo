@@ -8,19 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Milestone1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Milestone1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/engine/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/cards/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/cards/ConfusionCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/cards/ConfusionCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/cards/EnergyStealCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/cards/EnergyStealCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/cards/ShieldCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/cards/ShieldCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/cards/StartOverCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/cards/StartOverCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/cards/SwapperCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/cards/SwapperCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/cells/DoorCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/cells/DoorCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/cells/MonsterCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/cells/MonsterCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/cells/TransportCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/cells/TransportCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/monsters/Dasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/monsters/Dasher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/monsters/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/monsters/Monster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/engine/monsters/MultiTasker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/engine/monsters/MultiTasker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +29,10 @@
     &quot;accountId&quot;: &quot;d3e86f0a-868b-43bc-8c00-806ff90c7a0a&quot;
   }
 }</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -49,22 +40,27 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.Milestone2PublicTests.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.Milestone2PublicTests.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

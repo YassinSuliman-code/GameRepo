@@ -142,6 +142,7 @@ public class Board {
         }
 
         currentMonster.decrementConfusion(); 
+        opponentMonster.decrementConfusion();
         updateMonsterPositions(currentMonster, opponentMonster);
     }
 
