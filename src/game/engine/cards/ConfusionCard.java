@@ -5,23 +5,23 @@ import game.engine.monsters.Monster;
 
 public class ConfusionCard extends Card {
 	private int duration;
-
+	
 	public ConfusionCard(String name, String description, int rarity, int duration) {
 		super(name, description, rarity, false);
 		this.duration = duration;
 	}
-
-	public int getDuration(){
+	
+	public int getDuration() {
 		return duration;
 	}
 
 	@Override
-	public void performAction(Monster landingMonster, Monster opponentMonster) {
-		Role tempRole = landingMonster.getRole();
-		landingMonster.setRole(opponentMonster.getRole());
-		opponentMonster.setRole(tempRole);
-
-		landingMonster.setConfusionTurns(landingMonster.getConfusionTurns() + this.duration);
-		opponentMonster.setConfusionTurns(opponentMonster.getConfusionTurns() + this.duration);
+	public void performAction(Monster player, Monster opponent) {
+		player.setConfusionTurns(this.getDuration());
+		opponent.setConfusionTurns(this.getDuration());
+		Role playerRole = player.getRole();
+		player.setRole(opponent.getRole());
+		opponent.setRole(playerRole);
 	}
+	
 }

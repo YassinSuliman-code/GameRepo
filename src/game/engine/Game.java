@@ -3,6 +3,8 @@ package game.engine;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
+
 import game.engine.dataloader.DataLoader;
 import game.engine.exceptions.InvalidMoveException;
 import game.engine.exceptions.OutOfEnergyException;
@@ -10,46 +12,56 @@ import game.engine.monsters.*;
 
 public class Game {
 	private Board board;
-	private ArrayList<Monster> allMonsters;
+	private ArrayList<Monster> allMonsters; 
 	private Monster player;
 	private Monster opponent;
 	private Monster current;
-
+	private int lastDiceRoll;
+	
 	public Game(Role playerRole) throws IOException {
 		this.board = new Board(DataLoader.readCards());
+		
 		this.allMonsters = DataLoader.readMonsters();
 		
 		this.player = selectRandomMonsterByRole(playerRole);
-		this.allMonsters.remove(this.player);
-
-		Role opponentRole = (playerRole == Role.SCARER) ? Role.LAUGHER : Role.SCARER;
-		this.opponent = selectRandomMonsterByRole(opponentRole);
-		this.allMonsters.remove(this.opponent);
-
-		this.current = this.player;
-		Board.setStationedMonsters(this.allMonsters);
-		this.board.initializeBoard(DataLoader.readCells());
+		this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
+		this.current = player;
+		
+		allMonsters.remove(player);
+		allMonsters.remove(opponent);
+		
+		Board.setStationedMonsters(allMonsters);
+		board.initializeBoard(DataLoader.readCells());
 	}
 	
-	public Board getBoard(){
+	public Board getBoard() {
 		return board;
 	}
-	public ArrayList<Monster> getAllMonsters(){
-		return allMonsters;
+	
+	public ArrayList<Monster> getAllMonsters() {
+		return allMonsters; 
 	}
-	public Monster getPlayer(){
+	
+	public Monster getPlayer() {
 		return player;
 	}
-	public Monster getOpponent(){
+	
+	public Monster getOpponent() {
 		return opponent;
 	}
-	public Monster getCurrent(){
+	
+	public Monster getCurrent() {
 		return current;
 	}
-	public void setCurrent(Monster current){
+	
+	public void setCurrent(Monster current) {
 		this.current = current;
 	}
-
+	
+	public int getLastRoll(){
+		return lastDiceRoll;
+	}
+	
 	private Monster selectRandomMonsterByRole(Role role) {
 		Collections.shuffle(allMonsters);
 	    return allMonsters.stream()
@@ -57,50 +69,57 @@ public class Game {
 	    		.findFirst()
 	    		.orElse(null);
 	}
-
+	
 	private Monster getCurrentOpponent() {
-		return (this.current == this.player) ? this.opponent : this.player;
+		return current == player ? opponent : player;
 	}
 
 	private int rollDice() {
-		return (int) ((Math.random() * 6) + 1);
+		Random rand = new Random();
+		return rand.nextInt(6) + 1;
 	}
-
+	
 	public void usePowerup() throws OutOfEnergyException {
-		if (this.current.getEnergy() < Constants.POWERUP_COST) {
-			throw new OutOfEnergyException();
-		}
-		else {
-			this.current.setEnergyRaw(this.current.getEnergy() - Constants.POWERUP_COST);
-			this.current.executePowerupEffect(getCurrentOpponent());
-		}
+		if (current.getEnergy() < Constants.POWERUP_COST)
+			throw new OutOfEnergyException("Not enough energy to use powerup");
+		
+		current.executePowerupEffect(getCurrentOpponent());
+		current.setEnergy(current.getEnergy() - Constants.POWERUP_COST);
 	}
-
+	
 	public void playTurn() throws InvalidMoveException {
-		if (!this.current.isFrozen()) {
-			board.moveMonster(this.current, rollDice(), this.getCurrentOpponent());
+		if (current.isFrozen()) {
+			System.out.println(current.getName() + " is frozen! Turn skipped.");
+			current.setFrozen(false);
+			switchTurn();
+			return;
 		}
-		else {
-			this.current.setFrozen(false);
-			this.current.decrementConfusion(); 
-		}
+		
+		int roll = rollDice();
+		this.lastDiceRoll = roll;
+		
+		board.moveMonster(current, roll, getCurrentOpponent());
+		
 		switchTurn();
 	}
-
+	
 	private void switchTurn() {
-		this.current = this.getCurrentOpponent();
+		this.setCurrent(getCurrentOpponent());
 	}
-
+	
 	private boolean checkWinCondition(Monster monster) {
 		return monster.getPosition() == Constants.WINNING_POSITION && 
-			   monster.getEnergy() >= Constants.WINNING_ENERGY;
+		       monster.getEnergy() >= Constants.WINNING_ENERGY;
 	}
-
+	
 	public Monster getWinner() {
-		if (checkWinCondition(this.player)) return this.player;
-		if (checkWinCondition(this.opponent)) return this.opponent;
+		if (checkWinCondition(player)) 
+			return player;
+		
+		if (checkWinCondition(opponent)) 
+			return opponent;
+		
 		return null;
 	}
-
 	
 }

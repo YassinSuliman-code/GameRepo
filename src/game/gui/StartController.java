@@ -1,6 +1,8 @@
 package game.gui;
 
 import game.engine.Game;
+
+import game.engine.Main;
 import game.engine.Role;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,7 +41,6 @@ public class StartController {
 		root.setPadding(new Insets(40));
 		root.setStyle("-fx-background-color: #1a1a2e;");
 		
-		//The Titles
 		Label title = new Label("DoorDasH");
 		title.setFont(Font.font("Arial", FontWeight.BOLD, 52));
 		title.setTextFill(Color.PURPLE);
@@ -56,7 +57,6 @@ public class StartController {
 		chooseLabel.setFont(Font.font("Roboto", FontWeight.BOLD, 18));
 		chooseLabel.setTextFill(Color.WHITE);
 		
-		//The Buttons
 		Button scarerBtn = new Button("SCARER");
 		Button laugherBtn = new Button("LAUGHER");
 		Button startBtn = new Button("Start Game");
@@ -90,21 +90,20 @@ public class StartController {
 		return new Scene(root, 700, 520);
 	}
 	
-
 	private void handleStartGame(){
-		if (selectedRole == null)
-			return;
-		
-		Role chosenRole = selectedRole;
-		 try {
-	            Game game = new Game(chosenRole);
-	            // TODO: pass `game` to GameController
-	            // Main.showGameScreen(game);
-	            System.out.println("Game started! Player is: " + game.getPlayer().getName());
-	        } catch (Exception ex) {
-	            //TODO: make an error catching behavior
-	        }
-	}
+        if (selectedRole == null)
+            return;
+        
+        Role chosenRole = selectedRole;
+        try {
+            Game game = new Game(chosenRole);
+            Main.showGameScreen(game);
+        } catch (Exception ex) {
+            ex.printStackTrace(); 
+            String errorMsg = (ex.getMessage() == null) ? "Check your console for the exact error line." : ex.getMessage();
+            CustomAlertBox.display("Game Initialization Failed", errorMsg);
+        }
+    }
 	
 	private void showRules() {
 		Stage rulesStage = new Stage();
